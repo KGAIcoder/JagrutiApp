@@ -16,6 +16,8 @@ workflows:
     artifacts:
       - jagruti_app/build/ios/iphoneos/*.app
       - jagruti_app/build/ios/ipa/*.ipa
+
+    publishing:
       email:
         recipients:
           - kunalgujar.bugs@gmail.com
