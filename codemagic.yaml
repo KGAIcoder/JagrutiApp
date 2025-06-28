@@ -1,0 +1,19 @@
+workflows:
+  ios-workflow:
+    name: iOS Build Workflow
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Build iOS release
+        script: flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/*.app
+      - build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - kunalgujar.bugs@gmail.com
