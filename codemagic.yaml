@@ -5,15 +5,17 @@ workflows:
       flutter: stable
       xcode: latest
     scripts:
-      - name: Install dependencies
-        script: flutter pub get
-
+      - name: Install Flutter dependencies
+        script: |
+          cd jagruti_app
+          flutter pub get
       - name: Build iOS release
-        script: flutter build ios --release --no-codesign
+        script: |
+          cd jagruti_app
+          flutter build ios --release --no-codesign
     artifacts:
-      - build/ios/iphoneos/*.app
-      - build/ios/ipa/*.ipa
-    publishing:
+      - jagruti_app/build/ios/iphoneos/*.app
+      - jagruti_app/build/ios/ipa/*.ipa
       email:
         recipients:
           - kunalgujar.bugs@gmail.com
