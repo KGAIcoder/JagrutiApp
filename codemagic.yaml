@@ -6,22 +6,26 @@ workflows:
       xcode: latest
       cocoapods: default
       groups:
-        - app-store-connect  # Codemagic code signing credentials
+        - app-store-connect  # Contains API credentials: issuer ID, key ID, private key
     scripts:
       - name: Install Flutter dependencies
         script: |
           cd jagruti_app
           flutter pub get
 
-      - name: Initialize keychain and install signing certificates
+      - name: Initialize keychain for code signing
         script: |
           keychain initialize
-          keychain add-certificates
 
-      - name: Install CocoaPods dependencies
+      - name: Fetch code signing assets from App Store Connect
         script: |
-          cd jagruti_app/ios
-          pod install
+          app-store-connect fetch-signing-files "com.aaryalabs.jagrutiApp" \
+            --type IOS_APP_STORE \
+            --create
+
+      - name: Install signing certificates to keychain
+        script: |
+          keychain add-certificates
 
       - name: Build Flutter iOS app (no codesign)
         script: |
