@@ -12,10 +12,15 @@ workflows:
       - name: Build iOS release
         script: |
           cd jagruti_app
-          flutter build ios --release --no-codesign
+          flutter build ios --release
     artifacts:
-      - jagruti_app/build/ios/iphoneos/*.app
       - jagruti_app/build/ios/ipa/*.ipa
+
+    code_signing:
+      ios:
+        distribution_type: app_store
+        automatic_signing:
+          apple_team_id: 86DK5YPH6X
 
     publishing:
       email:
