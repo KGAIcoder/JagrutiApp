@@ -27,11 +27,17 @@ workflows:
         script: |
           keychain add-certificates
 
-      - name: Build and sign IPA
+      - name: Build Flutter iOS app (no codesign)
         script: |
           cd jagruti_app
-          flutter build ipa --release \
-            --export-method app-store
+          flutter build ios --release --no-codesign
+
+      - name: Apply provisioning profiles and sign the app
+        script: |
+          xcode-project use-profiles
+          xcode-project build-ipa \
+            --workspace jagruti_app/ios/Runner.xcworkspace \
+            --scheme Runner
 
     artifacts:
       - build/ios/ipa/*.ipa
