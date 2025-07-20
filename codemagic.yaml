@@ -1,29 +1,51 @@
 workflows:
-  ios-workflow:
-    name: iOS Workflow
-
-    integrations:
-      app_store_connect: CodemagicAdminAPI  # <-- your API key name in Codemagic UI
-
+  flutter-ios-build:
+    name: Flutter iOS CI/CD
     environment:
       flutter: stable
       xcode: latest
-
+      cocoapods: default
+      groups:
+        - app-store-connect  # Contains API credentials: issuer ID, key ID, private key
     scripts:
-      - name: Install dependencies
+      - name: Install Flutter dependencies
         script: |
-          cd jagruti_app
           flutter pub get
-      - name: Build iOS IPA
+
+      - name: Initialize keychain for code signing
         script: |
-          cd jagruti_app
-          flutter build ipa --release
+          keychain initialize
+
+      - name: Fetch code signing assets from App Store Connect
+        script: |
+          app-store-connect fetch-signing-files "com.aaryalabs.jagrutiApp" \
+            --type IOS_APP_STORE \
+            --create
+
+      - name: Install signing certificates to keychain
+        script: |
+          keychain add-certificates
+
+      - name: Build Flutter iOS app (no codesign)
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Apply provisioning profiles and sign the app
+        script: |
+          xcode-project use-profiles
+          xcode-project build-ipa \
+            --workspace ios/Runner.xcworkspace \
+            --scheme Runner
 
     artifacts:
       - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
 
     publishing:
-      app_store_connect:
-        auth: integration          # <-- Use the integration for auth
-        submit_to_testflight: true # <-- submit to TestFlight automatically
-        expire_build_submitted_for_review: true
+      email:
+        recipients:
+          - kunalgujar.bugs@gmail.com
+        notify:
+          success: true
+          failure: true
