@@ -9,10 +9,10 @@ workflows:
         script: |
           cd jagruti_app
           flutter pub get
-      - name: Build iOS release
+      - name: Build iOS IPA for App Store
         script: |
           cd jagruti_app
-          flutter build ios --release
+          flutter build ipa --release
     artifacts:
       - jagruti_app/build/ios/ipa/*.ipa
 
