@@ -12,9 +12,11 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
+          cd jagruti_app
           flutter pub get
       - name: Build iOS IPA
         script: |
+          cd jagruti_app
           flutter build ipa --release
 
     artifacts:
