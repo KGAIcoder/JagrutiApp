@@ -16,13 +16,13 @@ workflows:
     artifacts:
       - jagruti_app/build/ios/ipa/*.ipa
 
-    code_signing:
-      ios:
-        distribution_type: app_store
-        automatic_signing:
-          apple_team_id: 86DK5YPH6X
-
     publishing:
       email:
         recipients:
           - kunalgujar.bugs@gmail.com
+
+code_signing:
+  ios:
+    distribution_type: app_store
+    automatic_signing:
+      apple_team_id: 86DK5YPH6X
