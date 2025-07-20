@@ -1,33 +1,27 @@
 workflows:
   ios-workflow:
-    name: iOS Build Workflow
+    name: iOS Workflow
+
+    integrations:
+      app_store_connect: CodemagicAdminAPI  # <-- your API key name in Codemagic UI
+
     environment:
       flutter: stable
       xcode: latest
+
     scripts:
-      - name: Install Flutter dependencies
+      - name: Install dependencies
         script: |
-          cd jagruti_app
           flutter pub get
-      - name: Build iOS IPA for TestFlight
+      - name: Build iOS IPA
         script: |
-          cd jagruti_app
           flutter build ipa --release
+
     artifacts:
-      - jagruti_app/build/ios/ipa/*.ipa
+      - build/ios/ipa/*.ipa
 
     publishing:
       app_store_connect:
-        apple_id: your@email.com           # Your Apple ID (or use API key method)
-        bundle_id: com.example.jagrutiApp  # Must match App Store Connect app
-        submit_to_testflight: true         # ✅ Uploads build to TestFlight
-        upload_metadata: false             # Skips optional metadata (e.g., release notes)
-      email:
-        recipients:
-          - kunalgujar.bugs@gmail.com
-
-code_signing:
-  ios:
-    distribution_type: app_store
-    automatic_signing:
-      apple_team_id: 86DK5YPH6X
+        auth: integration          # <-- Use the integration for auth
+        submit_to_testflight: true # <-- submit to TestFlight automatically
+        expire_build_submitted_for_review: true
