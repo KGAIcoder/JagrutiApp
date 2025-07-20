@@ -10,6 +10,7 @@ workflows:
     scripts:
       - name: Install Flutter dependencies
         script: |
+          cd jagruti_app
           flutter pub get
 
       - name: Initialize keychain for code signing
@@ -28,6 +29,7 @@ workflows:
 
       - name: Build Flutter iOS app (no codesign)
         script: |
+          cd jagruti_app
           flutter build ios --release --no-codesign
 
       - name: Apply provisioning profiles and sign the app
