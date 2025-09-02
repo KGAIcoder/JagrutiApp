@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contacts App',
+      title: 'Jagrati Diary',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: SplashScreen(), // Start with SplashScreen
     );

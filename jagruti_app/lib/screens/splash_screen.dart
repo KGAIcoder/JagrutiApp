@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Import HomePage
+import 'password_screen.dart'; // ✅ Import password screen
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,10 +11,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => PasswordScreen()), // ✅ Go to password screen
       );
     });
   }
@@ -22,34 +22,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black, // ✅ fallback background color
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // 🔹 Full-Screen Background Image
+          // ✅ Full screen splash image (works on any resolution)
           Image.asset(
-            'assets/Jagruti.png',  // Replace with your image file
-            fit: BoxFit.cover,  // Ensures the image covers the entire screen
+            "assets/Jagruti_splash.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
 
-          // 🔹 App Name Overlay (Optional)
+          // ✅ Progress indicator at bottom
           Positioned(
             bottom: 50,
             left: 0,
             right: 0,
             child: Column(
-              children: [
+              children: const [
                 CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
                 SizedBox(height: 20),
-                Text(
-                  "Demo",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
               ],
             ),
           ),
