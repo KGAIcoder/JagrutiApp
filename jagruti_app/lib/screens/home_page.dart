@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import '../db/database_helper.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -18,6 +20,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _loadContacts();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   void _loadContacts() async {
@@ -106,8 +114,6 @@ class _HomePageState extends State<HomePage> {
                             String title = (contact['Title'] ?? " ").toString();
                             String surname = (contact['Surname'] ?? "Unknown Name").toString();
                             String name = (contact['Name'] ?? "Unknown Name").toString();
-                            String dob = (contact['DOB'] ?? "Unknown Place").toString();
-                            String place = (contact['Place'] ?? "Unknown Place").toString();
                             String phone = (contact['Phone'] ?? "No Phone Number").toString();
                             String email = (contact['Email ID'] ?? "No Email").toString();
                             String address = (contact['Address'] ?? "No Address").toString();

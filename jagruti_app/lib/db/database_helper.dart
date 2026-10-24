@@ -31,11 +31,9 @@ class DatabaseHelper {
   }
 
   Future<void> _copyDatabaseFromAssets(String path) async {
-    print("Copying database from assets...");
     ByteData data = await rootBundle.load("assets/jagruti.db");
     List<int> bytes = data.buffer.asUint8List();
     await File(path).writeAsBytes(bytes, flush: true);
-    print("Database copied successfully!");
   }
 
   Future<List<Map<String, dynamic>>> getContacts() async {

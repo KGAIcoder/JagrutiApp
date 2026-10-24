@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'password_screen.dart'; // ✅ Import password screen
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -12,9 +14,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => PasswordScreen()), // ✅ Go to password screen
+        MaterialPageRoute(builder: (context) => const PasswordScreen()), // ✅ Go to password screen
       );
     });
   }

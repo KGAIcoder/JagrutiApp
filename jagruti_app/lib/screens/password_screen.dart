@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class PasswordScreen extends StatefulWidget {
+  const PasswordScreen({super.key});
+
   @override
-  _PasswordScreenState createState() => _PasswordScreenState();
+  State<PasswordScreen> createState() => _PasswordScreenState();
 }
 
 class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _controller = TextEditingController();
   final String _correctPassword = "1008";
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _checkPassword() {
     if (_controller.text == _correctPassword) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

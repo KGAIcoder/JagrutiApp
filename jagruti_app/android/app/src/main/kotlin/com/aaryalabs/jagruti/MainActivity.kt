@@ -1,4 +1,4 @@
-package com.example.jagruti_app
+package com.aaryalabs.jagruti
 
 import io.flutter.embedding.android.FlutterActivity
 
