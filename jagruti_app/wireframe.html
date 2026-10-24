@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jagruti App Wireframe</title>
+  <style>
+    :root {
+      --bg: #fff4e6;
+      --surface: #ffffff;
+      --line: #efdcc8;
+      --text: #2b160f;
+      --muted: #7a5a47;
+      --brand: #a52a2a;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow: 0 6px 20px rgba(43, 22, 15, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% -10%, #ffe8cc 0%, transparent 38%),
+        radial-gradient(circle at 90% 110%, #ffedd6 0%, transparent 42%),
+        var(--bg);
+      min-height: 100vh;
+      padding: 28px;
+    }
+
+    .page-title {
+      max-width: 1100px;
+      margin: 0 auto 18px;
+    }
+
+    .page-title h1 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: 0.3px;
+    }
+
+    .page-title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel .head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff8f0 0%, #fff5ea 100%);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .menu {
+      padding: 12px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 600;
+      margin: 2px 0;
+    }
+
+    .menu-item.active {
+      background: #f8debf;
+      color: #5f2f15;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border: 2px solid currentColor;
+      border-radius: 6px;
+      opacity: 0.75;
+    }
+
+    .content {
+      padding: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #fff8f0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffe3cc;
+      display: grid;
+      place-items: center;
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .brand h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--brand);
+      letter-spacing: 1.5px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: #573426;
+      font-size: 14px;
+    }
+
+    .body {
+      padding: 18px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 8px 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      min-height: 132px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      font-size: 18px;
+      color: #6c4a39;
+    }
+
+    .spark {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid currentColor;
+      opacity: 0.85;
+    }
+
+    .value {
+      margin-top: 24px;
+      font-size: clamp(38px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .members-preview {
+      margin-top: 18px;
+      border-top: 1px dashed var(--line);
+      padding-top: 18px;
+    }
+
+    .members-head {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .search {
+      flex: 1;
+      border: 1px solid #efcba8;
+      background: #fff3e6;
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .members-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f9dfc9;
+      display: grid;
+      place-items: center;
+      color: #6b331a;
+      font-weight: 800;
+      font-size: 24px;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: #7a5a47;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      line-height: 1.05;
+      margin: 4px 0 10px;
+    }
+
+    .field {
+      color: #6f4f3f;
+      margin: 3px 0;
+    }
+
+    .legend {
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px dashed var(--line);
+      padding-top: 10px;
+    }
+
+    @media (max-width: 920px) {
+      body { padding: 16px; }
+      .layout { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: 1fr; }
+      .subtitle { font-size: 16px; }
+      .name { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-title">
+    <h1>Jagruti App Wireframe</h1>
+    <p>Updated per your request: menu excludes Notices and AI Assistant, dashboard grid keeps only 4 cards.</p>
+  </div>
+
+  <div class="layout">
+    <aside class="panel">
+      <div class="head">Navigation</div>
+      <nav class="menu">
+        <div class="menu-item active"><span class="dot"></span>Dashboard</div>
+        <div class="menu-item"><span class="dot"></span>Members</div>
+        <div class="menu-item"><span class="dot"></span>Reports</div>
+        <div class="menu-item"><span class="dot"></span>Add Member</div>
+        <div class="menu-item"><span class="dot"></span>User Manual</div>
+        <div class="menu-item"><span class="dot"></span>Temple &amp; GuestHouse</div>
+      </nav>
+    </aside>
+
+    <main class="panel content">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">N</div>
+          <div>
+            <h3>Nandwana</h3>
+            <small>COMMUNITY CONNECT</small>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="icon-btn">🔔</div>
+          <div class="icon-btn">☰</div>
+        </div>
+      </div>
+
+      <div class="body">
+        <h2 class="title">Dashboard</h2>
+        <p class="subtitle">Overview of your community directory</p>
+
+        <section class="stats">
+          <article class="card">
+            <div class="card-head">
+              <span>Total Members</span>
+              <span class="spark" style="color:#8c2727"></span>
+            </div>
+            <div class="value">2474</div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <span>Total Families</span>
+              <span class="spark" style="color:#0f8c57"></span>
+            </div>
+            <div class="value">206</div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <span>Birthdays this month</span>
+              <span class="spark" style="color:#ff2f92"></span>
+            </div>
+            <div class="value">183</div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <span>Anniversaries this month</span>
+              <span class="spark" style="color:#1c6cff"></span>
+            </div>
+            <div class="value">9</div>
+          </article>
+        </section>
+
+        <section class="members-preview">
+          <div class="members-head">
+            <div class="search">Search by Member ID, Name, City...</div>
+            <div class="icon-btn">⛃</div>
+            <div class="icon-btn">☷</div>
+          </div>
+
+          <article class="members-card">
+            <div class="avatar">AB</div>
+            <div>
+              <div class="meta-row">
+                <span>ID000001</span>
+              </div>
+              <div class="name">ASHISH BHABHALIA</div>
+              <div class="field">Gotra: MUDGAL</div>
+              <div class="field">Mobile: 93209 81889</div>
+              <div class="field">City: RAJKOT, GUJARAT</div>
+            </div>
+          </article>
+
+          <article class="members-card">
+            <div class="avatar">NB</div>
+            <div>
+              <div class="meta-row">
+                <span>ID000004</span>
+              </div>
+              <div class="name">NARENDRA BHABHALIA</div>
+              <div class="field">Gotra: MUDGAL</div>
+              <div class="field">Place of Death: RAJKOT</div>
+              <div class="field">Tithi: 05-05-2021</div>
+            </div>
+          </article>
+
+          <p class="legend">Wireframe preview only: shows dashboard + menu + member card style in your selected palette.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
